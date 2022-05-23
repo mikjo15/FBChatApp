@@ -3,6 +3,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Rooms} from '../screens/rooms.screen';
 import {Chat} from '../screens/chat.screen';
 import {Button} from 'react-native';
+import auth from '@react-native-firebase/auth';
+import {useAuth} from '../contexts/auth.context';
 
 export type AppStackParamList = {
   Rooms: undefined;
@@ -12,8 +14,14 @@ export type AppStackParamList = {
 const Stack = createStackNavigator<AppStackParamList>();
 
 export const AppNavigator = () => {
+  const {setState} = useAuth();
+
   const logOut = () => {
-    console.log('Log user out');
+    auth()
+      .signOut()
+      .then(() => {
+        setState({auth: false});
+      });
   };
 
   return (

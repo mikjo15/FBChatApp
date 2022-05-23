@@ -22,15 +22,3 @@ export interface IMessage {
   pending?: boolean;
   quickReplies?: QuickReplies;
 }
-
-export interface AuthStateType {
-  auth: boolean;
-}
-
-export interface AuthActionType {
-  [AuthAction.authenticate]: boolean;
-}
-
-export enum AuthAction {
-  authenticate = 'AUTHENTICATE',
-}

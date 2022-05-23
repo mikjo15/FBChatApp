@@ -13,9 +13,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		3269084683C35534D8B52352 /* libPods-FBChatApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 755E0066243E54BD1B461901 /* libPods-FBChatApp.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		D5B93543F39D4140AFDEEF29 /* RobotoMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A97A49B1B9EC4C31BED3B7B9 /* RobotoMono.ttf */; };
 		EC73F7C9282B9780004244D7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC73F7C8282B9780004244D7 /* GoogleService-Info.plist */; };
 		EF98EA38D1D5789D95FA284B /* libPods-FBChatApp-FBChatAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B08301F343AD2EB579723D1 /* libPods-FBChatApp-FBChatAppTests.a */; };
-		D5B93543F39D4140AFDEEF29 /* RobotoMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A97A49B1B9EC4C31BED3B7B9 /* RobotoMono.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,11 +43,11 @@
 		5B08301F343AD2EB579723D1 /* libPods-FBChatApp-FBChatAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FBChatApp-FBChatAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		755E0066243E54BD1B461901 /* libPods-FBChatApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FBChatApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = FBChatApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A97A49B1B9EC4C31BED3B7B9 /* RobotoMono.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = RobotoMono.ttf; path = ../app/assets/fonts/RobotoMono.ttf; sourceTree = "<group>"; };
 		C4A5FCEF96D0FFB14F62F549 /* Pods-FBChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FBChatApp.release.xcconfig"; path = "Target Support Files/Pods-FBChatApp/Pods-FBChatApp.release.xcconfig"; sourceTree = "<group>"; };
 		CA45396D91954E7A40D2EC1B /* Pods-FBChatApp-FBChatAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FBChatApp-FBChatAppTests.release.xcconfig"; path = "Target Support Files/Pods-FBChatApp-FBChatAppTests/Pods-FBChatApp-FBChatAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		EC73F7C8282B9780004244D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		A97A49B1B9EC4C31BED3B7B9 /* RobotoMono.ttf */ = {isa = PBXFileReference; name = "RobotoMono.ttf"; path = "../app/assets/fonts/RobotoMono.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +111,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6D15D1724119495CBCD1CB65 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A97A49B1B9EC4C31BED3B7B9 /* RobotoMono.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,15 +162,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		6D15D1724119495CBCD1CB65 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				A97A49B1B9EC4C31BED3B7B9 /* RobotoMono.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 

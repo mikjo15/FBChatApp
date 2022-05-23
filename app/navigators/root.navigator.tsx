@@ -4,11 +4,12 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {AppNavigator} from './app.navigator';
 import {AuthNavigator} from './auth.navigator';
 import {SplashScreen} from '../screens/splash.screen';
+import {useAuth} from '../contexts/auth.context';
 
 const Stack = createStackNavigator();
 
 export const RootNavigator = () => {
-  const auth = false;
+  const {state} = useAuth();
   const loading = false;
 
   return (
@@ -20,7 +21,7 @@ export const RootNavigator = () => {
       ) : (
         <Stack.Navigator
           screenOptions={{presentation: 'card', headerShown: false}}>
-          {auth ? (
+          {state.token ? (
             <Stack.Screen name="App" component={AppNavigator} />
           ) : (
             <Stack.Screen name="Auth" component={AuthNavigator} />
