@@ -1,28 +1,9 @@
 import React, {createContext, FC, useContext, useState} from 'react';
 
-interface AuthContextInterface {
-  state: {
-    idToken: string;
-    serverAuthCode: string;
-    scopes: Array<string>; // on iOS this is empty array if no additional scopes are defined
-    user: {
-      email: string;
-      id: string;
-      givenName: string;
-      familyName: string;
-      photo: string; // url
-      name: string; // full name
-    };
-  };
-  setState: (value: boolean) => void;
-}
-
-export const AuthContext = createContext<AuthContextInterface | null>(null);
+export const AuthContext = createContext({});
 
 export const AuthProvider: FC = ({children}) => {
-  const [state, setState] = useState({
-    auth: false,
-  });
+  const [state, setState] = useState({});
 
   return (
     <AuthContext.Provider value={{state, setState}}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -9,14 +9,27 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
+import {firebase, FirebaseDatabaseTypes} from '@react-native-firebase/database';
 
 GoogleSignin.configure();
 
 export const Login = () => {
   const {state, setState} = useAuth();
+  let reference: FirebaseDatabaseTypes.Reference | null = null;
+
+  useEffect(() => {
+    // if (state.token) {
+    //   reference = firebase
+    //     .app()
+    //     .database(
+    //       'https://fir-practice-e088c-default-rtdb.europe-west1.firebasedatabase.app/',
+    //     )
+    //     .ref('user/' + state.token);
+    // }
+    console.log(state);
+  }, [state]);
 
   const signIn = async () => {
-    //authenticate();
     try {
       await GoogleSignin.hasPlayServices();
       const {idToken} = await GoogleSignin.signIn();
