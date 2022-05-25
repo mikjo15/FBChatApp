@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -9,33 +9,71 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
-import {firebase, FirebaseDatabaseTypes} from '@react-native-firebase/database';
+import {firebase} from '@react-native-firebase/database';
 
 GoogleSignin.configure();
 
 export const Login = () => {
   const {state, setState} = useAuth();
-  let reference: FirebaseDatabaseTypes.Reference | null = null;
 
   useEffect(() => {
-    // if (state.token) {
-    //   reference = firebase
-    //     .app()
-    //     .database(
-    //       'https://fir-practice-e088c-default-rtdb.europe-west1.firebasedatabase.app/',
-    //     )
-    //     .ref('user/' + state.token);
-    // }
-    console.log(state);
+    if (state.firebaseId) {
+      // Initial state for testing
+      state.ref.set({
+        chat1: {
+          _id: '1',
+          title: 'Family',
+          desc: 'My family chat',
+          img: 'https://images.seoghoer.dk/s3fs-public/media/article/pri_117278292.jpg',
+          m1: {
+            _id: state.firebaseId,
+            text: 'First encounter',
+            user: {
+              _id: 2,
+              name: 'Kristian',
+            },
+          },
+        },
+        chat2: {
+          _id: '2',
+          title: 'School',
+          desc: 'My school friends',
+          img: 'https://digitalt.tv/wp-content/uploads/2020/12/Friends-HBO.jpg',
+          m1: {
+            _id: state.firebaseId,
+            text: 'First encounter',
+            user: {
+              _id: 3,
+              name: 'Ludvig',
+            },
+          },
+        },
+      });
+    }
   }, [state]);
 
   const signIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
-      const {idToken} = await GoogleSignin.signIn();
-      const credential = auth.GoogleAuthProvider.credential(idToken);
-      await auth().signInWithCredential(credential);
-      setState(credential);
+      const userInfo = await GoogleSignin.signIn(); // returns userInfo object from Google
+      const oAuthCred = auth.GoogleAuthProvider.credential(userInfo.idToken); // returns OAuthCredentials from Google
+      const userCred = await auth().signInWithCredential(oAuthCred); // returns UserCredentials from Firebase
+
+      const reference = firebase
+        .app()
+        .database(
+          'https://fbchatapp-ceb7d-default-rtdb.europe-west1.firebasedatabase.app/',
+        )
+        .ref('user/' + userCred.user.uid); // Unique branch in firebase for this user
+
+      const newState = {
+        firebaseId: userCred.user.uid,
+        ref: reference,
+        googleUser: userInfo.user,
+        googleOAuthToken: oAuthCred.token,
+        firebaseUser: userCred.user,
+      };
+      setState(newState);
     } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow

@@ -1,10 +1,12 @@
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {sharedStyles} from '../assets/styles/shared.styles';
 import {RoomView} from '../components/roomView';
+import {useAuth} from '../contexts/auth.context';
+import {roomCard} from '../interfaces';
 import {AppStackParamList} from '../navigators/app.navigator';
 
 const DATA = [
@@ -30,15 +32,28 @@ const DATA = [
 type AppScreenNavigationType = StackNavigationProp<AppStackParamList, 'Rooms'>;
 
 export const Rooms = () => {
+  const {state} = useAuth();
+  const [messages, setMessages] = useState<roomCard[]>([]);
+
   const navigation = useNavigation<AppScreenNavigationType>();
   const toChat = () => {
     navigation.navigate('Chat');
   };
 
+  useEffect(() => {
+    let initMsg: roomCard[] = [];
+    state.ref.once('value', (snapshot: any[]) => {
+      snapshot.forEach(child => {
+        initMsg.push(child);
+      });
+      setMessages(initMsg);
+    });
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <RoomView data={DATA} onPress={toChat} />
+        <RoomView data={messages} onPress={toChat} />
       </View>
     </SafeAreaView>
   );

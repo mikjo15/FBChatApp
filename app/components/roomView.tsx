@@ -19,20 +19,40 @@ export const RoomView: React.FC<RoomViewProps> = ({
   data,
   onPress,
 }: RoomViewProps) => {
+  const data2 = [
+    {
+      _id: '1',
+      desc: 'My family chat',
+      img: 'https://images.seoghoer.dk/s3fs-public/media/article/pri_117278292.jpg',
+      m1: {
+        _id: 'bKZGQ06MezXZyjOk9AOoXYxijQs1',
+        text: 'First encounter',
+        user: {_id: '2', name: 'Kristian'},
+      },
+      title: 'Family',
+    },
+  ];
+
+  console.log('Data: ', data[0]);
+  console.log();
+  console.log('Data2: ', data2);
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={data}
-        renderItem={({item}: ListRenderItemInfo<roomCard>) => (
-          <ChatRoom
-            id={item.id}
-            title={item.title}
-            desc={item.desc}
-            img={item.img}
-            onPress={onPress}
-          />
-        )}
-        keyExtractor={item => item.id}
+        data={data2}
+        renderItem={({item}) => {
+          return (
+            <ChatRoom
+              _id={'1'}
+              title={item.title}
+              desc={item.desc}
+              img={item.img}
+              onPress={onPress}
+            />
+          );
+        }}
+        keyExtractor={item => item._id}
       />
       <TouchableOpacity style={styles.fab}>
         <Image

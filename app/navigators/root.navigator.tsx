@@ -21,7 +21,7 @@ export const RootNavigator = () => {
       ) : (
         <Stack.Navigator
           screenOptions={{presentation: 'card', headerShown: false}}>
-          {state.token ? (
+          {state.firebaseId ? (
             <Stack.Screen name="App" component={AppNavigator} />
           ) : (
             <Stack.Screen name="Auth" component={AuthNavigator} />

@@ -4,7 +4,6 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {roomCard} from '../interfaces';
 
 export const ChatRoom: React.FC<roomCard> = ({
-  id,
   title,
   desc,
   img,

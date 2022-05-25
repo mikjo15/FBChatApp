@@ -1,7 +1,7 @@
 import {QuickReplies, User} from 'react-native-gifted-chat';
 
 export interface roomCard {
-  id: string;
+  _id: string;
   title: string;
   desc: string;
   img?: string;
