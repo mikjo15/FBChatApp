@@ -25,28 +25,66 @@ export const Login = () => {
           title: 'Family',
           desc: 'My family chat',
           img: 'https://images.seoghoer.dk/s3fs-public/media/article/pri_117278292.jpg',
-          m1: {
-            _id: state.firebaseId,
-            text: 'First encounter',
-            user: {
-              _id: 2,
-              name: 'Kristian',
+          msg: [
+            {
+              _id: state.firebaseId,
+              text: 'First encounter',
+              createdAt: new Date(Date.UTC(2016, 5, 11, 17, 20, 0)),
+              user: {
+                _id: '2',
+                name: 'Kristian',
+              },
             },
-          },
+            {
+              _id: state.firebaseId,
+              text: 'Dude',
+              createdAt: new Date(Date.UTC(2016, 5, 11, 17, 20, 0)),
+              user: {
+                _id: '2',
+                name: 'Kristian',
+              },
+            },
+            {
+              _id: '2',
+              text: 'What?!',
+              createdAt: new Date(Date.UTC(2016, 5, 11, 17, 20, 0)),
+              user: {
+                _id: state.firebaseId,
+                name: state.googleUser.givenName,
+                avatar:
+                  state.googleUser.photo ||
+                  'https://www.aagaardefterskole.dk/wp-content/uploads/2021/08/Kristian-Houbak-e1628583243389.jpg',
+              },
+            },
+          ],
         },
         chat2: {
           _id: '2',
-          title: 'School',
-          desc: 'My school friends',
-          img: 'https://digitalt.tv/wp-content/uploads/2020/12/Friends-HBO.jpg',
-          m1: {
-            _id: state.firebaseId,
-            text: 'First encounter',
-            user: {
-              _id: 3,
-              name: 'Ludvig',
+          title: 'Sally',
+          desc: 'Chat with Sally',
+          msg: [
+            {
+              _id: state.firebaseId,
+              text: 'Hej med dig',
+              createdAt: new Date(Date.UTC(2016, 5, 11, 17, 20, 0)),
+              user: {
+                _id: '2',
+                name: 'Kristian',
+              },
             },
-          },
+            {
+              _id: '2',
+              text: 'Halløj',
+              createdAt: new Date(Date.UTC(2016, 5, 11, 17, 20, 0)),
+              user: {
+                _id: state.firebaseId,
+                name: state.googleUser.givenName,
+                avatar:
+                  state.googleUser.photo ||
+                  'https://www.aagaardefterskole.dk/wp-content/uploads/2021/08/Kristian-Houbak-e1628583243389.jpg',
+              },
+            },
+          ],
         },
       });
     }

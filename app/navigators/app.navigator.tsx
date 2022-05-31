@@ -3,13 +3,16 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Rooms} from '../screens/rooms.screen';
 import {Chat} from '../screens/chat.screen';
 import {Button} from 'react-native';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
 import {useAuth} from '../contexts/auth.context';
 
 export type AppStackParamList = {
   Rooms: undefined;
-  Chat: undefined; // Needs to be changed when it takes params!
+  Chat: {roomId: string};
 };
+
+export type ChatProps = NativeStackScreenProps<AppStackParamList, 'Chat'>;
 
 const Stack = createStackNavigator<AppStackParamList>();
 

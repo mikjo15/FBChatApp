@@ -1,11 +1,16 @@
 import {QuickReplies, User} from 'react-native-gifted-chat';
 
-export interface roomCard {
+export interface room {
   _id: string;
   title: string;
   desc: string;
   img?: string;
-  onPress?: () => void;
+  msg?: any;
+}
+
+export interface roomCard {
+  _id: string;
+  room: room;
 }
 
 export interface IMessage {

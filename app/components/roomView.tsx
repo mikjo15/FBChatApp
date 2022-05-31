@@ -1,58 +1,39 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   FlatList,
   Image,
-  ListRenderItemInfo,
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import {ChatRoom} from './chatRoom';
 import {roomCard} from '../interfaces';
+import {useAuth} from '../contexts/auth.context';
 
 interface RoomViewProps {
   data: roomCard[];
-  onPress: () => void;
 }
 
-export const RoomView: React.FC<RoomViewProps> = ({
-  data,
-  onPress,
-}: RoomViewProps) => {
-  const data2 = [
-    {
-      _id: '1',
-      desc: 'My family chat',
-      img: 'https://images.seoghoer.dk/s3fs-public/media/article/pri_117278292.jpg',
-      m1: {
-        _id: 'bKZGQ06MezXZyjOk9AOoXYxijQs1',
-        text: 'First encounter',
-        user: {_id: '2', name: 'Kristian'},
-      },
-      title: 'Family',
-    },
-  ];
+export const RoomView: React.FC<RoomViewProps> = ({data}: RoomViewProps) => {
+  const {state} = useAuth();
+  const [chats, setChats] = useState<any[]>([]);
 
-  console.log('Data: ', data[0]);
-  console.log();
-  console.log('Data2: ', data2);
+  useEffect(() => {
+    state.ref.once('value').then((snapshot: any[]) => {
+      let chatList: any[] = [];
+      snapshot.forEach(chat => chatList.push(chat.val()));
+      setChats(chatList);
+    });
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={data2}
-        renderItem={({item}) => {
-          return (
-            <ChatRoom
-              _id={'1'}
-              title={item.title}
-              desc={item.desc}
-              img={item.img}
-              onPress={onPress}
-            />
-          );
-        }}
+        data={chats}
         keyExtractor={item => item._id}
+        renderItem={({item}) => {
+          return <ChatRoom _id={item._id} room={item} />;
+        }}
       />
       <TouchableOpacity style={styles.fab}>
         <Image
